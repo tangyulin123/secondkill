@@ -9,7 +9,7 @@
     </select>
 
     <insert id="decreaseProduct">
-        update t_product set stock = stock = #{quantity}
+        update t_product set stock = stock - #{quantity}
         where id = #{id}
     </insert>
 
