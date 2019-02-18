@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>购买产品测试</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+    <script>
+
+            var params = {
+                userId: 1,
+                productId: 1,
+                quantity: 3
+            };
+            $.ajax({
+                url: "/purchase",
+                type: "POST",
+                data: params,
+                success: function (data) {
+                    alert(data.message);
+                }
+            });
+
+    </script>
+</head>
+<body>
+<h1>抢购产品测试</h1>
+</body>
+</html>
