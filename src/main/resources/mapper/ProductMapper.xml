@@ -2,15 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.secondkill.mapper.ProductMapper">
 
+    <!-- <select id="getProduct" parameterType="long" resultType="product">
+         select id,product_name as productName, stock, price, version,
+         note from t_product where
+         id = #{id}
+     </select>-->
+    <!-- 加入悲观锁-->
     <select id="getProduct" parameterType="long" resultType="product">
         select id,product_name as productName, stock, price, version,
         note from t_product where
-        id = #{id}
+        id = #{id} for update
     </select>
 
-    <insert id="decreaseProduct">
+    <!--<insert id="decreaseProduct">
         update t_product set stock = stock - #{quantity}
         where id = #{id}
-    </insert>
+    </insert>-->
 
+    <!-- 加入乐观锁（使用version实现乐观锁） -->
+    <insert id="decreaseProduct">
+        update t_product set stock = stock - #{quantity},
+        version = version + 1
+        where id = #{id} and version = #{version}
+    </insert>
 </mapper>

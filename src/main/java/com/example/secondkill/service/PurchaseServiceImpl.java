@@ -32,8 +32,10 @@ public class PurchaseServiceImpl implements PurchaseService {
             //库存不足
             return false;
         }
+        //获取当前版本号
+        int version = product.getVersion();
         //扣减库存
-        productMapper.decreaseProduct(productId, quantity);
+        productMapper.decreaseProduct(productId, quantity,version);
         //初始化购买记录
         PurchaseRecord record = this.initPurchaseRecord(userId, product, quantity);
         //插入购买记录

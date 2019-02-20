@@ -12,5 +12,5 @@ public interface ProductMapper {
 
     Product getProduct(Long id);
 
-    int decreaseProduct(@Param("id") Long id,@Param("quantity") int quantity);
+    int decreaseProduct(@Param("id") Long id,@Param("quantity") int quantity,@Param("version") int version);
 }
